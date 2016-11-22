@@ -1,0 +1,18 @@
+<div style="height:310px;">
+  <x3d width='400px' height='300px'>
+    <scene>
+      <transform [attr.translation]='item.translation' *ngFor="let item of items">
+        <shape>
+          <appearance>
+            <material [attr.diffuseColor]='item.diffuseColor'></material>
+          </appearance>
+          <box *ngIf="item.type == 'box'"></box>
+          <cone *ngIf="item.type == 'cone'"></cone>
+          <sphere *ngIf="item.type == 'sphere'"></sphere>
+        </shape>
+      </transform>
+    </scene>
+  </x3d>
+</div>
+
+<button (click)="clicked()">Click</button>
