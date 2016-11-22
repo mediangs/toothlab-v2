@@ -18,9 +18,12 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/x3dom/x3dom.js"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/x3dom/x3dom.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
