@@ -6,12 +6,13 @@ import { HttpModule } from '@angular/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
-
+import {HomeComponent} from "./home/home.component";
 import appRoutes from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

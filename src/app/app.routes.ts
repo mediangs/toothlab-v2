@@ -1,6 +1,7 @@
 import {RouterModule} from "@angular/router";
+import {HomeComponent} from "./home/home.component";
 const routes = [
-  {path : '', loadChildren: 'app/home/home.module#HomeModule'},
+  {path : '', component : HomeComponent},
   {path : 'about', loadChildren: 'app/about/about.module#AboutModule'}
 ];
 
