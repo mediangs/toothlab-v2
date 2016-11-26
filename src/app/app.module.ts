@@ -8,16 +8,22 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "./home/home.component";
 import appRoutes from './app.routes';
+import {MaterialModule} from "@angular/material";
+import {AboutComponent} from "./about/about.component";
+import { MaterialComponent } from './material/material.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    MaterialComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    MaterialModule.forRoot(),
     appRoutes
   ],
   providers: [],
