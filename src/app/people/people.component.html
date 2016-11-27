@@ -1,0 +1,16 @@
+
+<div class="container">
+  <h3>{{title}}</h3>
+
+  <dl class="dl-horizontal">
+    <div  *ngFor="let person of people">
+      <dt>
+        {{person.name}}
+      </dt>
+      <dd>
+        {{person.role}}
+      </dd>
+    </div>
+  </dl>
+</div>
+

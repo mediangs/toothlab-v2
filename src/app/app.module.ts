@@ -5,19 +5,26 @@ import { HttpModule } from '@angular/http';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import {HomeComponent} from "./home/home.component";
 import appRoutes from './app.routes';
-import {MaterialModule} from "@angular/material";
-import {AboutComponent} from "./about/about.component";
+import { MaterialModule} from "@angular/material";
+
+import { AppComponent } from './app.component';
+import { HomeComponent} from "./home/home.component";
+import { AboutComponent} from "./about/about.component";
 import { MaterialComponent } from './material/material.component';
+import { PeopleComponent } from './people/people.component';
+import { PeopleService } from "./services/people.service";
+import { PublicationsComponent } from './publications/publications.component';
+import {PublicationsService} from "./services/publications.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    MaterialComponent
+    MaterialComponent,
+    PeopleComponent,
+    PublicationsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,7 @@ import { MaterialComponent } from './material/material.component';
     MaterialModule.forRoot(),
     appRoutes
   ],
-  providers: [],
+  providers: [PeopleService, PublicationsService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
