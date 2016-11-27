@@ -1,0 +1,25 @@
+
+<div class="container">
+  <h3>{{title}}</h3>
+
+  <table class="table table-hover" *ngFor="let model of modelList">
+
+    <tbody>
+    <td>
+      <a [routerLink]="['/model-detail', model.id]">
+        <img [attr.src]='model.path+model.snapshot'
+             [attr.alt]='model.id'
+             class="img-rounded"
+             width="70"
+             height="70">
+      </a>
+    </td>
+    <td>
+      {{model.id}} <br>
+      {{model.location}}<br>
+      {{model.description}}
+    </td>
+    </tbody>
+  </table>
+</div>
+

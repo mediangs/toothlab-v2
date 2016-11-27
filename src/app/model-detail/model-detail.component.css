@@ -1,0 +1,171 @@
+@charset "utf-8";
+
+body {
+  /*
+  background: url(sw_IXA-MX001052_tcm100-121412_grey.jpg);
+  */
+  background-attachment: scroll;
+  background-position: left top;
+  background-repeat: repeat-x;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 0.84em;
+  line-height:1.26em;
+  color: #000;
+  text-align: left;
+}
+
+
+/* three column layout */
+
+#wrapper1 {
+  position:relative;
+}
+
+#wrapper2 {
+  position:relative;
+}
+
+#maincol {
+  display: inherit; /* see ShowContent(), that un-hides the content */
+  position:relative;
+}
+
+#leftcol {
+  z-index:100;
+  position:relative;
+  float:left;
+  width:18%; /* actual value */
+}
+
+#rightcol {
+  z-index:100;
+  position:relative;
+  float:right;
+  width:30%; /* actual value */
+}
+
+#centercol {
+  position:relative;
+  padding:0 18%;
+}
+
+#footer {
+  /* test footer attached to bottom */
+  position: fixed;
+  width: 60%;
+  padding: 0 19%;
+  bottom: 0px;
+
+  /*
+    previous settings
+    position: relative;
+    width: 100%;
+    padding: 1% 0%;
+    clear:both;
+    */
+}
+
+/* other formatting of divs */
+
+#logo {
+  text-align:center;
+}
+
+#leftText {
+  text-align:left;
+  margin-top: 6%;
+}
+
+#headerText {
+  text-align: center;
+}
+
+#rightText {
+  text-align:left;
+  margin-top: 6%;
+}
+
+#ctrlContainer {
+  margin-top: 6%;
+}
+
+#setLanguage {
+  margin-top: 6%;
+}
+
+#function, #glossar {
+  text-align:center;
+}
+
+#legende {
+  position: relative; /* needed, otherwise z-index does not work */
+  margin-left: -100%; /* overlap 100% with X3D element */
+  float: right;
+  width: auto;
+  padding: 1%;
+  z-index: 99;
+  /* border: 2px solid #ff0000; */
+}
+
+#obenWert {
+  text-align: center;
+}
+
+#untenWert {
+  text-align: center;
+}
+
+#threshVal {
+  text-align: center;
+}
+
+/* style classes for divs in columns */
+
+.vbox {
+  /*
+  border-radius: 5px;
+  border: 2px solid #bcbcbc;
+  padding: 4% 6%;
+  */
+
+  /*
+    background-color: #dfeee9;
+    background: -moz-linear-gradient(top, #e4f2f5, #ebf6f4);
+    background: -webkit-gradient(linear, left top, left bottombottom, color-stop(0, #cce9e3), to(#dfeee9));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-top: 2px solid #fff;
+    -moz-box-shadow: 0 5px 15px black;
+    -webkit-box-shadow: 0 5px 15px black;
+    box-shadow: 0 5px 15px black; */
+}
+
+.vbox_head {
+  background-color: #dfeee9;
+  background: -moz-linear-gradient(top, #a5d2d9, #e4f2f5);
+  background: -webkit-gradient(linear, left top, left bottombottom, color-stop(0, #cce9e3), to(#dfeee9));
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #bcbcbc;
+  border-top: 2px solid #fff;
+  -moz-box-shadow: 0 5px 15px black;
+  -webkit-box-shadow: 0 5px 15px black;
+  box-shadow: 0 5px 15px black;
+  padding: 4% 6%;
+}
+
+.hbox {
+  background-color: #dfeee9;
+  background: -moz-linear-gradient(top, #cce9e3, #dfeee9);
+  background: -webkit-gradient(linear, left top, left bottombottom, color-stop(0, #cce9e3), to(#dfeee9));
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #bcbcbc;
+  border-top: 2px solid #fff;
+  -moz-box-shadow: 0 5px 15px black;
+  -webkit-box-shadow: 0 5px 15px black;
+  box-shadow: 0 5px 15px black;
+  padding: 1% 2%;
+}

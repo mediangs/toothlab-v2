@@ -13,9 +13,13 @@ import { HomeComponent} from "./home/home.component";
 import { AboutComponent} from "./about/about.component";
 import { MaterialComponent } from './material/material.component';
 import { PeopleComponent } from './people/people.component';
-import { PeopleService } from "./services/people.service";
 import { PublicationsComponent } from './publications/publications.component';
-import {PublicationsService} from "./services/publications.service";
+import { ModelListComponent } from './model-list/model-list.component';
+
+import { PeopleService } from "./services/people.service";
+import { PublicationsService } from "./services/publications.service";
+import { ModelService } from "./services/model.service";
+import { ModelDetailComponent } from './model-detail/model-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import {PublicationsService} from "./services/publications.service";
     AboutComponent,
     MaterialComponent,
     PeopleComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    ModelListComponent,
+    ModelDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +39,9 @@ import {PublicationsService} from "./services/publications.service";
     MaterialModule.forRoot(),
     appRoutes
   ],
-  providers: [PeopleService, PublicationsService],
+  providers: [PeopleService, PublicationsService, ModelService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

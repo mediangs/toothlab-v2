@@ -1,10 +1,10 @@
 import {ToothModel} from '../services/tooth-model';
-var basePath = "/app/models/anatomy/";
+const basePath = "/app/models/anatomy/";
 
-export var ModelList: ToothModel[] = 
+export const ModelList: ToothModel[] =
 [
     {
-        "id" : "LJKCS10", 
+        "id" : "LJKCS10",
         "location" : "Mandibular first molar, mesial root",
         "description":"Mandibular first molar with long curved canal",
         "snapshot" : "snapshot.jpg",
@@ -15,14 +15,14 @@ export var ModelList: ToothModel[] =
                 "transparency" : 0.9,
                 "color" : "#00f" //  "0 0 1"
             },
-            
+
             {
                 "name" : "canal_pre",
                 "description" : "Root canal",
                 "transparency" : 0.5,
                 "color" : "#0f0" // "0 1 0"
             },
-            
+
             {
                 "name" : "canal_axis",
                 "description" : "Canal axis",
@@ -52,9 +52,9 @@ export var ModelList: ToothModel[] =
         ],
         "path" : basePath + "ljkcs10/"
     },
-    
+
     {
-        "id" : "LJKCS01", 
+        "id" : "LJKCS01",
         "location" : "Mandibular first molar, mesial root",
         "description":"Mandibular first molar with short curved canal",
         "snapshot" : "snapshot.jpg",
@@ -65,14 +65,14 @@ export var ModelList: ToothModel[] =
                 "transparency" : 0.9,
                 "color" : "#00f" // "0 0 1"
             },
-            
+
             {
                 "name" : "canal_pre",
                 "description" : "Root canal",
                 "transparency" : 0.5,
                 "color" : "#0f0" // "0 1 0"
             }
-        ],        
+        ],
         "path" :  basePath +"ljkcs01/"
     }
 ];
