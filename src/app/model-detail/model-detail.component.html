@@ -6,100 +6,38 @@
 <br>
 
 <div style="height:400px;">
-  <x3d style="height:400px;" showProgress='false' showStat='false' showLog='false'>
-    <scene pickMode="texCoord">
+  <!--x3d  height='400px' width='400px' showProgress='false' showStat='false' showLog='false'>
+    <scene>
+      <Viewpoint position="24.58412 2.30883 0.28578"
+                 orientation="-0.61420 0.54921 -0.56668 2.04426"
+                 zNear="0" zFar="100" description=""></Viewpoint>
+
+      <Transform attr.DEF='root' translation="-4 -6 -8">
+
+
+          <Inline attr.nameSpaceName='root' mapDEFToID="true"
+                  attr.url='/app/models/anatomy/ljk10/root.x3d'></Inline>
+
+
+      </Transform>
+    </scene>
+  </x3d -->
+
+  <x3d style="height:400px;">
+    <scene>
       <Viewpoint position="24.58412 2.30883 0.28578" orientation="-0.61420 0.54921 -0.56668 2.04426" zNear="0" zFar="100" description=""></Viewpoint>
 
       <Group *ngFor = "let x3d of model.x3ds">
         <Transform [attr.DEF]='x3d.name' translation="-4 -6 -8">
-          <Inline [attr.nameSpaceName]='x3d.name' mapDEFToID="true" [attr.url]='model.path+x3d.name+".x3d"'></Inline>
+          <Inline [attr.nameSpaceName]='x3d.name'
+                  mapDEFToID="true"
+                  [attr.url]='model.path+x3d.name+".x3d"'></Inline>
         </Transform>
       </Group>
 
     </scene>
   </x3d>
 
-  <div id="wrapper1">
-    <!-- sets background to white and creates full length leftcol-->
-
-    <div id="wrapper2">
-      <!-- sets background to white and creates full length rightcol-->
-
-      <div id="maincol">
-        <!-- begin main content area -->
-        <!--
-        <div id="leftcol">
-            <div id="leftText" class="vbox">
-                <div id="leftTextContent_English" style="display: inherit;">
-                    <p>This demonstrator shows results of a simulation of <abbr title="electromagnetism">EM</abbr> phenomena - in this case the reflection properties of an airplane body hit by Radar waves.</p>
-                    <p>The simulation was post-processed by <a href="http://www.i-fx.net" target="_blank">iFX</a> and converted for 3D presentation on the Internet, using the <a href="http://www.x3dom.org" target="_blank">X3DOM</a> technology.</p>
-                    <p>You can manipulate the coloring and view interactively.</p>
-                </div>
-            </div>
-        </div>
-        -->
-
-
-        <div id="rightcol">
-          <!-- begin rightcol -->
-
-          <div id="rightText" class="vbox" style="display: inherit;">
-            {{model.id}} <br>
-            {{model.location}}<br>
-            {{model.description}}
-            <p><p>
-            <div  class="row" *ngFor="let x3d of model.x3ds">
-              <div class="col-sm-1">
-                <div *ngIf="x3d.transparency===1">
-                  <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg" aria-hidden="false"></i>
-                </div>
-
-                <div *ngIf="x3d.transparency < 1">
-                  <i (click)="changeTransperancy(x3d, 1);" class="fa fa-eye fa-lg" aria-hidden="false"></i>
-                </div>
-              </div>
-
-              <div class="col-sm-1">
-                <i class="fa fa-area-chart fa-lg"></i>
-              </div>
-
-              <div class="col-sm-1">
-                <span>
-                                <i class="fa fa-square fa-lg">
-                                </i></span>
-              </div>
-
-              <div class="col-sm-9">
-                {{x3d.description}}
-              </div>
-
-            </div>
-
-            <div>
-              <br>
-              <slider></slider>
-
-              <button md-raised-button  (click)="reload()">Reload</button>
-              <button md-raised-button (click)="gotoAnatomy()">Back</button>
-            </div>
-          </div>
-
-          <!-- end rightcol -->
-        </div>
-
-        <div id="centercol">
-          <!-- end centercol -->
-        </div>
-
-        <div id="footer">
-
-        </div>
-      </div>
-      <!-- end wrapper1 -->
-    </div>
-    <!-- end wrapper2 -->
-
-  </div>
 </div>
 
 <div id="footer">
