@@ -1,0 +1,57 @@
+
+<div>
+  <h4>{{model.id}}</h4>
+  {{model.location}}<br>
+  {{model.description}}
+</div>
+
+
+<div>
+  <x3d style="height:500px;" showProgress='false' showStat='false' showLog='false'>
+    <scene pickMode="texCoord">
+      <Viewpoint position="24.58412 2.30883 0.28578" orientation="-0.61420 0.54921 -0.56668 2.04426" zNear="0" zFar="100" description=""></Viewpoint>
+
+      <Group *ngFor = "let x3d of model.x3ds">
+        <Transform [attr.DEF]='x3d.name' translation="-4 -6 -8">
+          <Inline [attr.nameSpaceName]='x3d.name' mapDEFToID="true" [attr.url]='model.path+x3d.name+".x3d"'></Inline>
+        </Transform>
+      </Group>
+    </scene>
+  </x3d>
+</div>
+
+
+
+
+<div  class="row" *ngFor="let x3d of model.x3ds">
+  <div class="col-sm-1">
+    <div *ngIf="x3d.transparency===1">
+      <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg" aria-hidden="false"></i>
+    </div>
+
+    <div *ngIf="x3d.transparency < 1">
+      <i (click)="changeTransperancy(x3d, 1);" class="fa fa-eye fa-lg" aria-hidden="false"></i>
+    </div>
+  </div>
+
+  <div class="col-sm-1">
+    <i class="fa fa-area-chart fa-lg"></i>
+  </div>
+
+
+  <div class="col-sm-1">
+                    <i class="fa fa-square fa-lg">
+                    </i>
+  </div>
+
+
+
+  <div class="col-sm-9">
+    {{x3d.description}}
+  </div>
+
+</div>
+<div>
+  <button (click)="reload()">Reload</button>
+  <button (click)="gotoAnatomy()">Back</button>
+</div>

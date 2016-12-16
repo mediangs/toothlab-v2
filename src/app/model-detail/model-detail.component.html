@@ -4,8 +4,8 @@
 
 <br>
 
-<div style="height:400px;">
-  <x3d style="height:400px;" showProgress='false' showStat='false' showLog='false'>
+<div style="height:500px;">
+  <x3d style="height:500px;" showProgress='false' showStat='false' showLog='false'>
     <scene pickMode="texCoord">
       <Viewpoint position="24.58412 2.30883 0.28578" orientation="-0.61420 0.54921 -0.56668 2.04426" zNear="0" zFar="100" description=""></Viewpoint>
 
@@ -62,11 +62,13 @@
                 <i class="fa fa-area-chart fa-lg"></i>
               </div>
 
+
               <div class="col-sm-1">
-                <span>
-                                <i class="fa fa-square fa-lg">
+                                <span> <i class="fa fa-square fa-lg">
                                 </i></span>
               </div>
+
+
 
               <div class="col-sm-9">
                 {{x3d.description}}
@@ -78,8 +80,8 @@
               <br>
               <slider></slider>
 
-              <button md-raised-button  (click)="reload()">Reload</button>
-              <button md-raised-button (click)="gotoAnatomy()">Back</button>
+              <button (click)="reload()">Reload</button>
+              <button (click)="gotoAnatomy()">Back</button>
             </div>
           </div>
 

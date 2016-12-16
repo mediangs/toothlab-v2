@@ -20,6 +20,7 @@ import { PeopleService } from "./services/people.service";
 import { PublicationsService } from "./services/publications.service";
 import { ModelService } from "./services/model.service";
 import { ModelDetailComponent } from './model-detail/model-detail.component';
+import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-plain.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ModelDetailComponent } from './model-detail/model-detail.component';
     PeopleComponent,
     PublicationsComponent,
     ModelListComponent,
-    ModelDetailComponent
+    ModelDetailComponent,
+    ModelDetailPlainComponent
   ],
   imports: [
     BrowserModule,
