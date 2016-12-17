@@ -1,5 +1,5 @@
-import {ToothModel} from '../services/tooth-model';
-const basePath = "/app/models/anatomy/";
+import {ToothModel} from '../../app/services/tooth-model';
+const basePath = "/assets/models/anatomy/";
 
 export const ModelList: ToothModel[] =
 [

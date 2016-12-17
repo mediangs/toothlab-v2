@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {PublicationList} from '../data/publications.data';
+import {PublicationList} from '../../assets/data/publications.data';
 
 @Injectable()
 export class PublicationsService{

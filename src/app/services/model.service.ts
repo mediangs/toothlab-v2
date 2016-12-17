@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ToothModel} from './tooth-model';
-import {ModelList} from '../data/models.data';
+import {ModelList} from '../../assets/data/models.data';
 
 @Injectable()
 export class ModelService{
