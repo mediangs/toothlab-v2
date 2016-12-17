@@ -1,3 +1,4 @@
+view-source:http://x3dom.org/x3dom/example/x3dom_x3dElementCSSIntegration.html
 
 <div>
   <h4>{{model.id}}</h4>
@@ -7,7 +8,12 @@
 
 
 <div>
-  <x3d  height="512px" showProgress='false' showStat='false' showLog='false'>
+  <x3d  id="model" height="512px" showProgress='false' showStat='false' showLog='false'>
+
+    <ul id="tools">
+      <li><button onclick="toggle_size(this);">Zoom</button></li>
+    </ul>
+
     <scene pickMode="texCoord">
       <Viewpoint position="24.58412 2.30883 0.28578"
                  orientation="-0.61420 0.54921 -0.56668 2.04426"
