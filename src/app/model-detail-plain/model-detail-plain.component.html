@@ -10,9 +10,9 @@
   </div>
 
 
-  <x3d  id="model" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' >
-  <!-- x3d  id="model" [attr.height.px]="modelHeight"
-        [attr.width.px] = "modelWidth" showProgress='false' showStat='false' showLog='false' -->
+  <!--x3d  id="model" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' -->
+  <x3d  id="model"  height="10%" width = "10%" [style.height.percent]="modelHeight"
+        [style.width.percent] = "modelWidth" showProgress='false' showStat='false' showLog='false' >
 
     <ul id="tools">
       <li><button id="zoom-button" (click)="toggleZoom()">Zoom</button></li>
@@ -40,7 +40,10 @@
         </div>
 
         <div *ngIf="x3d.transparency < 1">
-          <i (click)="changeTransperancy(x3d, 1);" class="fa fa-eye fa-lg" aria-hidden="false"></i>
+          <i (click)="changeTransperancy(x3d, 1);"
+             class="fa fa-eye fa-lg"
+             [style.color]="x3d.color"
+             aria-hidden="false"></i>
         </div>
       </div>
 

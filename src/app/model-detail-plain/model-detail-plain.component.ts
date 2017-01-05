@@ -17,6 +17,8 @@ export class ModelDetailPlainComponent implements OnInit {
   isLoading = true;
   model : ToothModel;
   color : string = '#0ff';
+  modelWidth = 100;
+  modelHeight = 100;
 
   constructor(
     private modelService : ModelService,
