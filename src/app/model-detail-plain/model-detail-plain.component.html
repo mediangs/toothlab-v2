@@ -1,17 +1,21 @@
-view-source:http://x3dom.org/x3dom/example/x3dom_x3dElementCSSIntegration.html
 
-<div>
-  <h4>{{model.id}}</h4>
-  {{model.location}}<br>
-  {{model.description}}
-</div>
+<!--view-source:http://x3dom.org/x3dom/example/x3dom_x3dElementCSSIntegration.html -->
 
 
-<div>
-  <x3d  id="model" height="512px" showProgress='false' showStat='false' showLog='false'>
+<div id="main">
+  <div id="title" *ngIf="!zoomed">
+    <h4>{{model.id}}</h4>
+    {{model.location}}<br>
+    {{model.description}}
+  </div>
+
+
+  <x3d  id="model" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' >
+  <!-- x3d  id="model" [attr.height.px]="modelHeight"
+        [attr.width.px] = "modelWidth" showProgress='false' showStat='false' showLog='false' -->
 
     <ul id="tools">
-      <li><button onclick="toggle_size(this);">Zoom</button></li>
+      <li><button id="zoom-button" (click)="toggleZoom()">Zoom</button></li>
     </ul>
 
     <scene pickMode="texCoord">
@@ -27,25 +31,27 @@ view-source:http://x3dom.org/x3dom/example/x3dom_x3dElementCSSIntegration.html
       </Group>
     </scene>
   </x3d>
-</div>
 
-<div  class="row" *ngFor="let x3d of model.x3ds">
-  <div class="col-sm-1">
-    <div *ngIf="x3d.transparency===1">
-      <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg" aria-hidden="false"></i>
+  <div  *ngIf="!zoomed">
+    <div class="row" *ngFor="let x3d of model.x3ds">
+      <div class="col-sm-1">
+        <div *ngIf="x3d.transparency===1">
+          <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg" aria-hidden="false"></i>
+        </div>
+
+        <div *ngIf="x3d.transparency < 1">
+          <i (click)="changeTransperancy(x3d, 1);" class="fa fa-eye fa-lg" aria-hidden="false"></i>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        {{x3d.description}}
+      </div>
+
     </div>
-
-    <div *ngIf="x3d.transparency < 1">
-      <i (click)="changeTransperancy(x3d, 1);" class="fa fa-eye fa-lg" aria-hidden="false"></i>
+    <div>
+      <button (click)="reload()">Reload</button>
+      <button (click)="gotoAnatomy()">Back</button>
     </div>
   </div>
-
-  <div class="col-sm-9">
-    {{x3d.description}}
-  </div>
-
-</div>
-<div>
-  <button (click)="reload()">Reload</button>
-  <button (click)="gotoAnatomy()">Back</button>
 </div>

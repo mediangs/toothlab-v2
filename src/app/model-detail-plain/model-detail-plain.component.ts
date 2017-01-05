@@ -13,6 +13,7 @@ declare var x3dom: any;
 export class ModelDetailPlainComponent implements OnInit {
 
   title = "Root canal anatomy detail";
+  zoomed = false;
   isLoading = true;
   model : ToothModel;
   color : string = '#0ff';
@@ -68,6 +69,23 @@ export class ModelDetailPlainComponent implements OnInit {
     this.renderer.setElementAttribute(
       document.getElementById(element.name+'__MA'),
       'transparency', element.transparency.toString());
+  }
+
+  toggleZoom(){
+
+    var button = document.getElementById('zoom-button');
+
+
+    if(this.zoomed){
+      button.style.backgroundColor = "#202021";
+
+    } else{
+      button.style.backgroundColor = "#c23621";
+
+    }
+
+    this.zoomed = !this.zoomed;
+
   }
 
   gotoAnatomy() {

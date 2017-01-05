@@ -1,6 +1,17 @@
 
-html{width:100%;height:100%;margin:0;padding:0;}
-body{margin:0;padding:10px;width:100%;height:100%;}
+html {
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+body {
+  margin:0;
+  padding:10px;
+  width:100%;
+  height:100%;
+}
 
 #tools {
   top:0;
@@ -9,7 +20,8 @@ body{margin:0;padding:10px;width:100%;height:100%;}
   padding:1px;
   position:absolute;
   display:inline;
-  z-index:100;}
+  z-index:100;
+}
 
 #tools li{
   line-height:0px;
@@ -17,7 +29,8 @@ body{margin:0;padding:10px;width:100%;height:100%;}
   display:inline;
   padding:0;
   margin:0 -4px 0 0;
-  float:left;}
+  float:left;
+}
 
 #tools li button{
   border:1px solid #666;
@@ -26,12 +39,16 @@ body{margin:0;padding:10px;width:100%;height:100%;}
   padding:4px;
   margin:0;
   display:inline;
-  margin-top:-1px;}
+  margin-top:-1px;
+}
 
 #tools li button:hover{
-  background-color:blue;}
+  background-color:blue;
+}
 
-#tools li:first-child button{margin-left:-1px;}
+#tools li:first-child button {
+  margin-left:-1px;
+}
 
 #model{
   position:relative;
