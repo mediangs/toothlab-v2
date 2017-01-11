@@ -1,25 +1,9 @@
 
-html {
-  width:100%;
-  height:100%;
-  margin:0;
-  padding:0;
-}
-
-body {
-  margin:0;
-  padding:10px;
-  width:100%;
-  height:100%;
-}
-
 #tools {
   top:0;
   left:0;
-  //bottom:0;
-  //right:0;
-  margin:1px;
-  padding:1px;
+  margin:2px;
+  padding:2px;
   position:absolute;
   display:inline;
   z-index:100;
@@ -55,9 +39,9 @@ body {
 #model{
   position:relative;
   display:block;
+  align-content: center;
   line-height:0px;
   padding:0;
-  display:block;
-  width:50%;
-  height:50%;
+  width:40%;
+  height:40%;
   border-color:#666;}
