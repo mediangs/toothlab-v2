@@ -3,6 +3,7 @@ export interface ToothModel{
   location : string; //Maxillary molar
   description? : string; //
   snapshot? : string; // LJKMX01.jpg
+  sections? : string;
   x3ds? : X3dProperty[]; // [root.x3d, canal-pre.x3d, canal-ptu.x3d]
   path : string;
 

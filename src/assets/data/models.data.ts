@@ -8,18 +8,19 @@ export const ModelList: ToothModel[] =
         "location" : "Mandibular first molar, mesial root",
         "description":"Mandibular first molar with long curved canal",
         "snapshot" : "snapshot.jpg",
+        "sections" : "sections.json",
         "x3ds" : [
             {
                 "name" : "root",
                 "description" : "Root surface",
-                "transparency" : 0.9,
+                "transparency" : 0.8,
                 "color" : "#00f" //  "0 0 1"
             },
 
             {
                 "name" : "canal_pre",
                 "description" : "Root canal",
-                "transparency" : 0.5,
+                "transparency" : 0.7,
                 "color" : "#0f0" // "0 1 0"
             },
 
