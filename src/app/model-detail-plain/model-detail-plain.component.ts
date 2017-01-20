@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Renderer} from '@angular/core';
 import { ActivatedRoute, Router} from "@angular/router";
 import { ModelService } from "../services/model.service";
 import { ToothModel, X3dProperty } from "../services/tooth-model";
+import {Http} from "@angular/http";
 
 declare var x3dom: any;
 
@@ -19,13 +20,16 @@ export class ModelDetailPlainComponent implements OnInit {
   color : string = '#0ff';
   modelWidth = 100;
   modelHeight = 100;
+  sections; //JSON
+
 
   constructor(
     private modelService : ModelService,
     private route : ActivatedRoute,
     private router : Router,
     private el : ElementRef,
-    private renderer : Renderer
+    private renderer : Renderer,
+    private http : Http
   ) { }
 
   ngOnInit() {
@@ -42,6 +46,12 @@ export class ModelDetailPlainComponent implements OnInit {
 
     //this.restoreModelStatus()
     this.isLoading = false;
+
+    var sectionFile = this.model.path+this.model.sections;
+    this.http.get(sectionFile).subscribe(res=>this.sections = res.json());
+    console.log(this.sections);
+
+
   }
 
 
