@@ -47,9 +47,21 @@ export class ModelDetailPlainComponent implements OnInit {
     //this.restoreModelStatus()
     this.isLoading = false;
 
+    /*
     var sectionFile = this.model.path+this.model.sections;
-    this.http.get(sectionFile).subscribe(res=>this.sections = res.json());
-    console.log(this.sections);
+    this.http.get(sectionFile).map(res=>res.json()).subscribe((data)=>{
+      this.sections = data;
+      console.log(this.sections);
+      console.log(this.sections.model.crv_name);
+      console.log(this.sections.sections[0].cnl_pre_major_outline);
+    });
+    */
+    this.modelService.getSectionData(this.model).subscribe(data => {
+      this.sections = data;
+
+      console.log(this.sections.model);
+    });
+
 
 
   }
