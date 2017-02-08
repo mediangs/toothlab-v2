@@ -20,7 +20,7 @@ export class ModelDetailPlainComponent implements OnInit {
   color : string = '#0ff';
   modelWidth = 100;
   modelHeight = 100;
-  sections; //JSON
+  sectionData; //JSON
 
 
   constructor(
@@ -57,14 +57,36 @@ export class ModelDetailPlainComponent implements OnInit {
     });
     */
     this.modelService.getSectionData(this.model).subscribe(data => {
-      this.sections = data;
+      //this.sectionData = data.sections[0].bdy_major_outline;
+      this.sectionData = data.sections;
 
-      console.log(this.sections.model);
+      console.log(data);
     });
 
 
 
   }
+
+  /*
+  var outline = [[1,2,3], [2,3,4], [4,3,5]];
+  var flattened = '[' + outline.reduce((acc, ele) => acc +' '+ ele.join(' '), '') +']';
+
+  var idx = 0;
+  var indexed  = '[' + outline.reduce((acc, ele) => acc + ' ' + (idx++).toString(),'') + ' 0]';
+
+  console.log(flattened);
+  console.log(indexed);
+
+
+
+   var outline = [[1,2,3], [2,3,4], [4,3,5]];
+   var merged = [].concat.apply([], outline);
+   var index =[...Array(outline.length).keys()].concat(0);
+
+   console.log(merged.join(' '));
+   console.log(index.join(' '));
+
+  */
 
 
   updateModelColor(x3d){

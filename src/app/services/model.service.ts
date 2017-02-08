@@ -28,7 +28,7 @@ export class ModelService{
   }
 */
 
-  getSectionData(model:ToothModel) : Observable<string>{
+  getSectionData(model:ToothModel) : Observable<any>{
     return this.http.get(model.path + model.sections)
       .map(res=>res.json());
   }
