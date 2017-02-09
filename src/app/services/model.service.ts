@@ -3,6 +3,7 @@ import {ToothModel} from './tooth-model';
 import {ModelList} from '../../assets/data/models.data';
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
+import {SectionsSchema} from "./sections-schema";
 
 @Injectable()
 export class ModelService{
@@ -28,7 +29,7 @@ export class ModelService{
   }
 */
 
-  getSectionData(model:ToothModel) : Observable<any>{
+  getSectionData(model:ToothModel) : Observable<SectionsSchema>{
     return this.http.get(model.path + model.sections)
       .map(res=>res.json());
   }

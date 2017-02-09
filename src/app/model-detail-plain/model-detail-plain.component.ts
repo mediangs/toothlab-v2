@@ -3,6 +3,7 @@ import { ActivatedRoute, Router} from "@angular/router";
 import { ModelService } from "../services/model.service";
 import { ToothModel, X3dProperty } from "../services/tooth-model";
 import {Http} from "@angular/http";
+import {SectionsSchema} from "../services/sections-schema";
 
 declare var x3dom: any;
 
@@ -20,7 +21,10 @@ export class ModelDetailPlainComponent implements OnInit {
   color : string = '#0ff';
   modelWidth = 100;
   modelHeight = 100;
-  sectionData; //JSON
+  sectionData : SectionsSchema; //JSON
+  merged
+  keys
+
 
 
   constructor(
@@ -47,23 +51,17 @@ export class ModelDetailPlainComponent implements OnInit {
     //this.restoreModelStatus()
     this.isLoading = false;
 
-    /*
-    var sectionFile = this.model.path+this.model.sections;
-    this.http.get(sectionFile).map(res=>res.json()).subscribe((data)=>{
-      this.sections = data;
-      console.log(this.sections);
-      console.log(this.sections.model.crv_name);
-      console.log(this.sections.sections[0].cnl_pre_major_outline);
-    });
-    */
     this.modelService.getSectionData(this.model).subscribe(data => {
-      //this.sectionData = data.sections[0].bdy_major_outline;
-      this.sectionData = data.sections;
+      this.sectionData = data;
 
-      console.log(data);
+
+      var outline = this.sectionData.sections[2].bdy_major_outline;
+
+      this.merged = [].concat.apply([], outline);
+      this.keys = Object.keys(outline).map(x=>Number(x)).concat(0);
+
+
     });
-
-
 
   }
 
@@ -133,7 +131,18 @@ export class ModelDetailPlainComponent implements OnInit {
     this.zoomed = !this.zoomed;
 
   }
+  generateOutline(){
 
+    var outline = this.sectionData.sections[1].bdy_major_outline;
+    var merged = [].concat.apply([], outline);
+    var keys = Object.keys(outline).map(x=>Number(x)).concat(0);
+    return { point : merged, coordIndex : keys}
+
+
+    //console.log(merged);
+    //console.log(keys);
+
+  }
   gotoAnatomy() {
     this.router.navigate(['/model-list']);
   }
