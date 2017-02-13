@@ -33,13 +33,10 @@
         </Group>
 
         <shape>
-          <IndexedLineSet [attr.coordIndex]='getIndexedLineSet().coordIndex '>
-            <Coordinate [attr.point]='getIndexedLineSet().coordPoints '></Coordinate>
+          <IndexedLineSet [attr.coordIndex]='coordIndex '>
+            <Coordinate [attr.point]='coordPoints '></Coordinate>
           </IndexedLineSet>
 
-          <!-- IndexedLineSet [attr.coordIndex]= 'coordIndex'>
-            <Coordinate [attr.point]='coordPoints'></Coordinate>
-          </IndexedLineSet -->
         </shape>
 
       </Transform>
@@ -71,7 +68,7 @@
     <div>
       <button (click)="reload()">Reload</button>
       <button (click)="gotoAnatomy()">Back</button>
-      <button (click)="generateOutline()">Gen. Outline</button>
+      <button (click)="getIndexedLineSet(currentSection)">Gen. Outline</button>
     </div>
   </div>
 </div>

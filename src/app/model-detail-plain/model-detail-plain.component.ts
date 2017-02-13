@@ -22,6 +22,7 @@ export class ModelDetailPlainComponent implements OnInit {
   modelWidth = 100;
   modelHeight = 100;
   sectionData: SectionsSchema; //JSON
+
   coordIndex;
   coordPoints;
 
@@ -116,14 +117,16 @@ export class ModelDetailPlainComponent implements OnInit {
 
   }
 
-  getIndexedLineSet() {
+  currentSection = 0;
+  getIndexedLineSet(section) {
+    console.log(this.currentSection);
+    if (this.sectionData.sections[section]){
+      var outline = this.sectionData.sections[section].bdy_major_outline;
+      this.coordPoints = [].concat.apply([], outline);
+      this.coordIndex = Object.keys(outline).map(x=>Number(x)).concat(0);
+      this.currentSection ++;
+    }
 
-
-    //var outline = this.sectionData.sections[1].bdy_major_outline;
-    //var coordPoints = [].concat.apply([], outline);
-    //var coordIndex = Object.keys(outline).map(x=>Number(x)).concat(0);
-    //console.log(this.sectionData);
-    return {coordPoints: this.coordPoints, coordIndex: this.coordIndex}
 
 
     //console.log(merged);
