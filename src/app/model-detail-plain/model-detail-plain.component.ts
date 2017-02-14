@@ -23,8 +23,8 @@ export class ModelDetailPlainComponent implements OnInit {
   modelHeight = 100;
   sectionData: SectionsSchema; //JSON
 
-  coordIndex;
-  coordPoints;
+  coordIndex : SectionSechema ;
+  coordPoints : SectionSechema;
 
 
   constructor(private modelService: ModelService,
@@ -61,10 +61,10 @@ export class ModelDetailPlainComponent implements OnInit {
         .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
       //console.log(section);
 
-      outline = section.bdy_major_outline;
+      //outline = section.bdy_major_outline;
 
-      this.coordPoints = [].concat.apply([], outline);
-      this.coordIndex = Object.keys(outline).map(x => Number(x)).concat(0);
+      //this.coordPoints[''] = [].concat.apply([], outline);
+      //this.coordIndex = Object.keys(outline).map(x => Number(x)).concat(0);
 
 
     });
@@ -122,8 +122,8 @@ export class ModelDetailPlainComponent implements OnInit {
     console.log(this.currentSection);
     if (this.sectionData.sections[section]){
       var outline = this.sectionData.sections[section].bdy_major_outline;
-      this.coordPoints = [].concat.apply([], outline);
-      this.coordIndex = Object.keys(outline).map(x=>Number(x)).concat(0);
+      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
+      this.coordIndex.bdy_major_outline  = Object.keys(outline).map(x=>Number(x)).concat(0);
       this.currentSection ++;
     }
 
