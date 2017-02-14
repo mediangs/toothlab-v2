@@ -27,8 +27,8 @@ export class ModelDetailPlainComponent implements OnInit {
 
   sectionData: SectionModelSchema; //JSON
 
-  coordIndex ;
-  coordPoints;
+  private coordIndex : ViewSectionSchema = {} ;
+  private coordPoints : ViewSectionSchema = {};
 
   constructor(private specimenService: SpecimenService,
               private route: ActivatedRoute,
@@ -125,11 +125,17 @@ export class ModelDetailPlainComponent implements OnInit {
 
   currentSection = 0;
   getIndexedLineSet(section) {
-    //console.log(this.currentSection);
+    var outline;
     if (this.sectionData.sections[section]){
-      var outline = this.sectionData.sections[section].bdy_major_outline;
-      this.coordPoints = [].concat.apply([], outline);
-      this.coordIndex  = Object.keys(outline).map(x=>Number(x)).concat(0);
+
+      outline = this.sectionData.sections[section].bdy_major_outline;
+      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
+      this.coordIndex.bdy_major_outline  = Object.keys(outline).map(x=>Number(x)).concat(0);
+
+      outline = this.sectionData.sections[section].cnl_pre_major_outline;
+      this.coordPoints.cnl_pre_major_outline = [].concat.apply([], outline);
+      this.coordIndex.cnl_pre_major_outline = Object.keys(outline).map(x=>Number(x)).concat(0);
+
       this.currentSection ++;
     }
 
