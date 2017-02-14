@@ -14,12 +14,11 @@ import { AboutComponent} from "./about/about.component";
 import { MaterialComponent } from './material/material.component';
 import { PeopleComponent } from './people/people.component';
 import { PublicationsComponent } from './publications/publications.component';
-import { ModelListComponent } from './model-list/model-list.component';
+import { SpecimenListComponent } from './specimen-list/specimen-list.component';
 
 import { PeopleService } from "./services/people.service";
 import { PublicationsService } from "./services/publications.service";
-import { ModelService } from "./services/model.service";
-import { ModelDetailComponent } from './model-detail/model-detail.component';
+import { SpecimenService } from "./services/specimen.service";
 import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-plain.component';
 
 @NgModule({
@@ -30,8 +29,7 @@ import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-pla
     MaterialComponent,
     PeopleComponent,
     PublicationsComponent,
-    ModelListComponent,
-    ModelDetailComponent,
+    SpecimenListComponent,
     ModelDetailPlainComponent
   ],
   imports: [
@@ -41,7 +39,7 @@ import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-pla
     MaterialModule.forRoot(),
     appRoutes
   ],
-  providers: [PeopleService, PublicationsService, ModelService],
+  providers: [PeopleService, PublicationsService, SpecimenService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

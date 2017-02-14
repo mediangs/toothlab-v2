@@ -1,4 +1,4 @@
-import {Publication} from '../../app/services/publication';
+import {Publication} from '../../app/services/publication-schema';
 
 export const PublicationList: Publication[] =
 [

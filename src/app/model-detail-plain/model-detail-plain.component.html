@@ -3,14 +3,14 @@
 
 <div id="main">
   <div id="title" *ngIf="!zoomed">
-    <h4>{{model.id}}</h4>
-    {{model.location}}<br>
-    {{model.description}}<br>
+    <h4>{{specimen.id}}</h4>
+    {{specimen.location}}<br>
+    {{specimen.description}}<br>
     {{sectionData && sectionData.model.crv_name }}
   </div>
 
 
-  <!--x3d  id="model" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' -->
+  <!--x3d  id="specimen" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' -->
   <x3d id="model" height="70%" width="70%" [style.height.percent]="modelHeight"
        [style.width.percent]="modelWidth" showProgress='false' showStat='false' showLog='false'>
 
@@ -27,14 +27,14 @@
 
       <Transform translation="-4 -6 -8">
 
-        <Group *ngFor="let x3d of model.x3ds">
+        <Group *ngFor="let x3d of specimen.x3dModels">
           <Inline [attr.nameSpaceName]='x3d.name' mapDEFToID="true"
-                  [attr.url]='model.path+x3d.name+".x3d"'></Inline>
+                  [attr.url]='specimen.path+x3d.name+".x3d"'></Inline>
         </Group>
 
         <shape>
-          <IndexedLineSet [attr.coordIndex]='coordIndex.bdy_major_outline '>
-            <Coordinate [attr.point]='coordPoints.bdy_major_outline '></Coordinate>
+          <IndexedLineSet [attr.coordIndex]='coordIndex'>
+            <Coordinate [attr.point]='coordPoints'></Coordinate>
           </IndexedLineSet>
 
         </shape>
@@ -45,7 +45,7 @@
   </x3d>
 
   <div *ngIf="!zoomed">
-    <div class="row" *ngFor="let x3d of model.x3ds">
+    <div class="row" *ngFor="let x3d of specimen.x3dModels">
       <div class="col-sm-1">
         <div *ngIf="x3d.transparency===1">
           <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg"

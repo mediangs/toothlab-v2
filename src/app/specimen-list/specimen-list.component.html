@@ -2,11 +2,11 @@
 <div class="container">
   <h3>{{title}}</h3>
 
-  <table class="table table-hover" *ngFor="let model of modelList">
+  <table class="table table-hover" *ngFor="let model of specimenList">
 
     <tbody>
     <td>
-      <a [routerLink]="['/model-detail-plain', model.id]">
+      <a [routerLink]="['/specimen-detail-plain', model.id]">
         <img [attr.src]='model.path+model.snapshot'
              [attr.alt]='model.id'
              class="img-rounded"

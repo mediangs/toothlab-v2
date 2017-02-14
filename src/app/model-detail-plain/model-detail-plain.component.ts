@@ -1,9 +1,9 @@
 import {Component, OnInit, ElementRef, Renderer} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ModelService} from "../services/model.service";
-import {ToothModel, X3dProperty} from "../services/tooth-model";
+import {SpecimenService} from "../services/specimen.service";
+import {Specimen, X3dModel} from "../services/specimen-schema";
 import {Http} from "@angular/http";
-import {SectionsSchema, SectionSechema} from "../services/sections-schema";
+import {SectionModelSchema, SectionSechema, ViewSectionSchema} from "../services/section-schema";
 
 declare var x3dom: any;
 
@@ -12,22 +12,25 @@ declare var x3dom: any;
   templateUrl: './model-detail-plain.component.html',
   styleUrls: ['./model-detail-plain.component.css']
 })
+
 export class ModelDetailPlainComponent implements OnInit {
 
   title = "Root canal anatomy detail";
   zoomed = false;
   isLoading = true;
-  model: ToothModel;
+
+  specimen: Specimen;
+
   color: string = '#0ff';
   modelWidth = 100;
   modelHeight = 100;
-  sectionData: SectionsSchema; //JSON
 
-  coordIndex : SectionSechema ;
-  coordPoints : SectionSechema;
+  sectionData: SectionModelSchema; //JSON
 
+  coordIndex ;
+  coordPoints;
 
-  constructor(private modelService: ModelService,
+  constructor(private specimenService: SpecimenService,
               private route: ActivatedRoute,
               private router: Router,
               private el: ElementRef,
@@ -37,11 +40,11 @@ export class ModelDetailPlainComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.model = this.modelService.getModelById(params['id']);
+      this.specimen = this.specimenService.getSpecimenById(params['id']);
     });
 
     //color-picker사용을 위해 소문자로 바꾸어야함 ??
-    this.model.x3ds.forEach(el => {
+    this.specimen.x3dModels.forEach(el => {
       el.color = el.color.toLowerCase();
     });
 
@@ -50,8 +53,10 @@ export class ModelDetailPlainComponent implements OnInit {
     //this.restoreModelStatus()
     this.isLoading = false;
 
-    this.modelService.getSectionData(this.model).subscribe(data => {
+    this.specimenService.getSectionData(this.specimen).subscribe(data => {
       this.sectionData = data;
+
+      /*
       var outline;
       var section: SectionSechema;
 
@@ -61,11 +66,12 @@ export class ModelDetailPlainComponent implements OnInit {
         .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
       //console.log(section);
 
-      //outline = section.bdy_major_outline;
+      outline = section.bdy_major_outline;
 
-      //this.coordPoints[''] = [].concat.apply([], outline);
-      //this.coordIndex = Object.keys(outline).map(x => Number(x)).concat(0);
-
+      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
+      this.coordIndex.bdy_major_outline = Object.keys(outline).map(x => Number(x)).concat(0);
+      console.log(this.coordIndex.bdy_major_outline);
+      */
 
     });
 
@@ -80,7 +86,7 @@ export class ModelDetailPlainComponent implements OnInit {
   }
 
   restoreModelStatus() {
-    this.model.x3ds.forEach(el => {
+    this.specimen.x3dModels.forEach(el => {
       this.renderer.setElementAttribute(
         document.getElementById(el.name + '__MA'),
         'transparency', el.transparency.toString());
@@ -92,7 +98,7 @@ export class ModelDetailPlainComponent implements OnInit {
     });
   }
 
-  changeTransperancy(element: X3dProperty, transperancy: number) {
+  changeTransperancy(element: X3dModel, transperancy: number) {
     element.prevTransperancy = element.transparency;
     element.transparency = transperancy;
     this.renderer.setElementAttribute(
@@ -119,11 +125,11 @@ export class ModelDetailPlainComponent implements OnInit {
 
   currentSection = 0;
   getIndexedLineSet(section) {
-    console.log(this.currentSection);
+    //console.log(this.currentSection);
     if (this.sectionData.sections[section]){
       var outline = this.sectionData.sections[section].bdy_major_outline;
-      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
-      this.coordIndex.bdy_major_outline  = Object.keys(outline).map(x=>Number(x)).concat(0);
+      this.coordPoints = [].concat.apply([], outline);
+      this.coordIndex  = Object.keys(outline).map(x=>Number(x)).concat(0);
       this.currentSection ++;
     }
 
@@ -135,7 +141,7 @@ export class ModelDetailPlainComponent implements OnInit {
   }
 
   gotoAnatomy() {
-    this.router.navigate(['/model-list']);
+    this.router.navigate(['/specimen-list']);
   }
 
   reload() {

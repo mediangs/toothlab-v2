@@ -1,7 +1,7 @@
-import {ToothModel} from '../../app/services/tooth-model';
+import {Specimen} from '../../app/services/specimen-schema';
 const basePath = "/assets/models/anatomy/";
 
-export const ModelList: ToothModel[] =
+export const SpecimenList: Specimen[] =
 [
     {
         "id" : "LJKCS10",
@@ -9,7 +9,7 @@ export const ModelList: ToothModel[] =
         "description":"Mandibular first molar with long curved canal",
         "snapshot" : "snapshot.jpg",
         "sections" : "sections.json",
-        "x3ds" : [
+        "x3dModels" : [
             {
                 "name" : "root",
                 "description" : "Root surface",
@@ -59,7 +59,7 @@ export const ModelList: ToothModel[] =
         "location" : "Mandibular first molar, mesial root",
         "description":"Mandibular first molar with short curved canal",
         "snapshot" : "snapshot.jpg",
-        "x3ds" : [
+        "x3dModels" : [
             {
                 "name" : "root",
                 "description" : "Root surface",
