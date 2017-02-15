@@ -32,6 +32,11 @@
                   [attr.url]='specimen.path+x3d.name+".x3d"'></Inline>
         </Group>
 
+
+
+
+
+        <!-- group>
         <shape>
           <IndexedLineSet [attr.coordIndex]='coordIndex.bdy_major_outline'>
             <Coordinate [attr.point]='coordPoints.bdy_major_outline'></Coordinate>
@@ -44,12 +49,28 @@
           </IndexedLineSet>
         </shape>
 
+        <shape>
+          <IndexedLineSet [attr.coordIndex]='coordIndex.cnl_pst_major_outline'>
+            <Coordinate [attr.point]='coordPoints.cnl_pst_major_outline'></Coordinate>
+          </IndexedLineSet>
+        </shape>
+        </group -->
+
 
       </Transform>
 
     </scene>
   </x3d>
+  <div>test
+  {{coordIndex }}
+  </div>
+  
+  <div *ngFor ="let c of coordPoints | keys">
+    test
+    {{c.key}} --- {{c.value}}<br>
+    {{coordIndex[c.key]}}
 
+  </div>
   <div *ngIf="!zoomed">
     <div class="row" *ngFor="let x3d of specimen.x3dModels">
       <div class="col-sm-1">

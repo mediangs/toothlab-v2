@@ -136,8 +136,20 @@ export class ModelDetailPlainComponent implements OnInit {
       this.coordPoints.cnl_pre_major_outline = [].concat.apply([], outline);
       this.coordIndex.cnl_pre_major_outline = Object.keys(outline).map(x=>Number(x)).concat(0);
 
+      outline = this.sectionData.sections[section].cnl_pst_major_outline;
+      this.coordPoints.cnl_pst_major_outline = [].concat.apply([], outline);
+      this.coordIndex.cnl_pst_major_outline = Object.keys(outline).map(x=>Number(x)).concat(0);
+
       this.currentSection ++;
     }
+
+    /*
+    for (var key in this.coordPoints){
+      if(this.coordPoints.hasOwnProperty(key)){
+        console.log(key + "->" + this.coordPoints[key]);
+      }
+    }
+    */
 
 
 

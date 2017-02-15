@@ -20,6 +20,7 @@ import { PeopleService } from "./services/people.service";
 import { PublicationsService } from "./services/publications.service";
 import { SpecimenService } from "./services/specimen.service";
 import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-plain.component';
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ModelDetailPlainComponent } from './model-detail-plain/model-detail-pla
     PeopleComponent,
     PublicationsComponent,
     SpecimenListComponent,
-    ModelDetailPlainComponent
+    ModelDetailPlainComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
