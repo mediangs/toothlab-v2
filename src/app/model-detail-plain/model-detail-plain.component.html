@@ -61,16 +61,13 @@
 
     </scene>
   </x3d>
-  <div>test
-  {{coordIndex }}
-  </div>
-  
-  <div *ngFor ="let c of coordPoints | keys">
-    test
-    {{c.key}} --- {{c.value}}<br>
-    {{coordIndex[c.key]}}
 
+  ==>>
+  <div *ngFor ="let kv of coordIndex | keys">
+    <li>{{kv.key}} --> {{kv.val}}</li>
   </div>
+
+
   <div *ngIf="!zoomed">
     <div class="row" *ngFor="let x3d of specimen.x3dModels">
       <div class="col-sm-1">

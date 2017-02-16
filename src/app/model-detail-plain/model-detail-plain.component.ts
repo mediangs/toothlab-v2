@@ -26,9 +26,13 @@ export class ModelDetailPlainComponent implements OnInit {
   modelHeight = 100;
 
   sectionData: SectionModelSchema; //JSON
-
-  private coordIndex : ViewSectionSchema = {} ;
-  private coordPoints : ViewSectionSchema = {};
+  myobj  ;
+  coordIndex : ViewSectionSchema = {bdy_major_outline : undefined,
+                                    cnl_pre_major_outline : undefined,
+                                    cnl_pst_major_outline : undefined} ;
+  coordPoints : ViewSectionSchema ={bdy_major_outline : undefined,
+    cnl_pre_major_outline : undefined,
+    cnl_pst_major_outline : undefined}; // = {bdy_major_outline : [1,2,3]};
 
   constructor(private specimenService: SpecimenService,
               private route: ActivatedRoute,
@@ -142,6 +146,8 @@ export class ModelDetailPlainComponent implements OnInit {
 
       this.currentSection ++;
     }
+    this.myobj = { a : [1,2,3], b:[4,5,6]};
+    console.log(this.coordIndex);
 
     /*
     for (var key in this.coordPoints){
