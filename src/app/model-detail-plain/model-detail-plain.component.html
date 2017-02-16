@@ -32,40 +32,18 @@
                   [attr.url]='specimen.path+x3d.name+".x3d"'></Inline>
         </Group>
 
-
-
-
-
-        <!-- group>
-        <shape>
-          <IndexedLineSet [attr.coordIndex]='coordIndex.bdy_major_outline'>
-            <Coordinate [attr.point]='coordPoints.bdy_major_outline'></Coordinate>
-          </IndexedLineSet>
-        </shape>
-
-        <shape>
-          <IndexedLineSet [attr.coordIndex]='coordIndex.cnl_pre_major_outline'>
-            <Coordinate [attr.point]='coordPoints.cnl_pre_major_outline'></Coordinate>
-          </IndexedLineSet>
-        </shape>
-
-        <shape>
-          <IndexedLineSet [attr.coordIndex]='coordIndex.cnl_pst_major_outline'>
-            <Coordinate [attr.point]='coordPoints.cnl_pst_major_outline'></Coordinate>
-          </IndexedLineSet>
-        </shape>
-        </group -->
-
+        <Group *ngFor="let key of coordIndex | keys">
+          <shape>
+            <IndexedLineSet [attr.coordIndex]='coordIndex[key]'>
+              <Coordinate [attr.point]='coordPoints[key]'></Coordinate>
+            </IndexedLineSet>
+          </shape>
+        </Group>
 
       </Transform>
 
     </scene>
   </x3d>
-
-  ==>>
-  <div *ngFor ="let kv of coordIndex | keys">
-    <li>{{kv.key}} --> {{kv.val}}</li>
-  </div>
 
 
   <div *ngIf="!zoomed">

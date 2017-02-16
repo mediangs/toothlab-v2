@@ -26,13 +26,8 @@ export class ModelDetailPlainComponent implements OnInit {
   modelHeight = 100;
 
   sectionData: SectionModelSchema; //JSON
-  myobj  ;
-  coordIndex : ViewSectionSchema = {bdy_major_outline : undefined,
-                                    cnl_pre_major_outline : undefined,
-                                    cnl_pst_major_outline : undefined} ;
-  coordPoints : ViewSectionSchema ={bdy_major_outline : undefined,
-    cnl_pre_major_outline : undefined,
-    cnl_pst_major_outline : undefined}; // = {bdy_major_outline : [1,2,3]};
+  coordIndex : ViewSectionSchema = {} ;
+  coordPoints: ViewSectionSchema = {} ;
 
   constructor(private specimenService: SpecimenService,
               private route: ActivatedRoute,
@@ -129,39 +124,22 @@ export class ModelDetailPlainComponent implements OnInit {
 
   currentSection = 0;
   getIndexedLineSet(section) {
-    var outline;
-    if (this.sectionData.sections[section]){
-
-      outline = this.sectionData.sections[section].bdy_major_outline;
-      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
-      this.coordIndex.bdy_major_outline  = Object.keys(outline).map(x=>Number(x)).concat(0);
-
-      outline = this.sectionData.sections[section].cnl_pre_major_outline;
-      this.coordPoints.cnl_pre_major_outline = [].concat.apply([], outline);
-      this.coordIndex.cnl_pre_major_outline = Object.keys(outline).map(x=>Number(x)).concat(0);
-
-      outline = this.sectionData.sections[section].cnl_pst_major_outline;
-      this.coordPoints.cnl_pst_major_outline = [].concat.apply([], outline);
-      this.coordIndex.cnl_pst_major_outline = Object.keys(outline).map(x=>Number(x)).concat(0);
-
-      this.currentSection ++;
-    }
-    this.myobj = { a : [1,2,3], b:[4,5,6]};
-    console.log(this.coordIndex);
+    var keys = ['bdy_major_outline', 'cnl_pre_major_outline','cnl_pst_major_outline'];
 
     /*
-    for (var key in this.coordPoints){
-      if(this.coordPoints.hasOwnProperty(key)){
-        console.log(key + "->" + this.coordPoints[key]);
-      }
-    }
+    var goal = 5;
+    section = this.sectionData.sections
+      .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
     */
 
-
-
-    //console.log(merged);
-    //console.log(keys);
-
+    if (this.sectionData.sections[section]){
+      keys.forEach(key => {
+        var outline = this.sectionData.sections[section][key];
+        this.coordPoints[key] = [].concat.apply([], outline);
+        this.coordIndex[key]  = Object.keys(outline).map(x=>Number(x)).concat(0);
+      });
+      this.currentSection ++;
+    }
   }
 
   gotoAnatomy() {
