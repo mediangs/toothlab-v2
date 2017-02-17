@@ -20,6 +20,7 @@ export class ModelDetailPlainComponent implements OnInit {
   isLoading = true;
 
   specimen: Specimen;
+  specimenId: string;
 
   color: string = '#0ff';
   modelWidth = 100;
@@ -39,7 +40,8 @@ export class ModelDetailPlainComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.specimen = this.specimenService.getSpecimenById(params['id']);
+      this.specimenId = params['id'];
+      this.specimen = this.specimenService.getSpecimenById(this.specimenId);
     });
 
     //color-picker사용을 위해 소문자로 바꾸어야함 ??
@@ -52,27 +54,8 @@ export class ModelDetailPlainComponent implements OnInit {
     //this.restoreModelStatus()
     this.isLoading = false;
 
-    this.specimenService.getSectionData(this.specimen).subscribe(data => {
-      this.sectionData = data;
-
-      /*
-      var outline;
-      var section: SectionSechema;
-
-      //section = this.sectionData.sections.filter(x => x.section === 1);
-      var goal = 5;
-      section = this.sectionData.sections
-        .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
-      //console.log(section);
-
-      outline = section.bdy_major_outline;
-
-      this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
-      this.coordIndex.bdy_major_outline = Object.keys(outline).map(x => Number(x)).concat(0);
-      console.log(this.coordIndex.bdy_major_outline);
-      */
-
-    });
+    this.specimenService.getSectionData(this.specimen)
+      .subscribe(data => this.sectionData = data);
 
   }
 

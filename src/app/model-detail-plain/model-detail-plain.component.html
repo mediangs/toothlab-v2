@@ -47,8 +47,11 @@
 
 
   <div *ngIf="!zoomed">
-    <div class="row" *ngFor="let x3d of specimen.x3dModels">
-      <div class="col-sm-1">
+    <div  *ngFor="let x3d of specimen.x3dModels">
+
+      <md-slide-toggle background-color="rgba(0, 81, 181, 0.26)" >{{x3d.description}}</md-slide-toggle>
+
+      <!-- div class="col-sm-1">
         <div *ngIf="x3d.transparency===1">
           <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg"
              aria-hidden="false"></i>
@@ -64,7 +67,7 @@
 
       <div class="col-sm-9">
         {{x3d.description}}
-      </div>
+      </div-->
 
     </div>
     <div>
