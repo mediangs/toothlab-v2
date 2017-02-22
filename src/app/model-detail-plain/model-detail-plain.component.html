@@ -2,12 +2,18 @@
 
 
 <div id="main">
+
   <div id="title" *ngIf="!zoomed">
+  <md-card>
+    <md-card-content>
     <h4>{{specimen.id}}</h4>
     {{specimen.location}}<br>
     {{specimen.description}}<br>
     {{sectionData && sectionData.model.crv_name }}
+    </md-card-content>
+  </md-card>
   </div>
+
 
 
   <!--x3d  id="specimen" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' -->
@@ -47,10 +53,11 @@
 
 
   <div *ngIf="!zoomed">
-    <div  *ngFor="let x3d of specimen.x3dModels">
+    <ul  *ngFor="let x3d of specimen.x3dModels">
 
-      <md-slide-toggle background-color="rgba(0, 81, 181, 0.26)" >{{x3d.description}}</md-slide-toggle>
-
+      <md-checkbox class="items" color="primary" >
+        <md-icon class="md-24" [style.color]="x3d.color">label</md-icon>
+          {{x3d.description}}</md-checkbox>
       <!-- div class="col-sm-1">
         <div *ngIf="x3d.transparency===1">
           <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg"
@@ -69,7 +76,7 @@
         {{x3d.description}}
       </div-->
 
-    </div>
+    </ul>
     <div>
       <button (click)="reload()">Reload</button>
       <button (click)="gotoAnatomy()">Back</button>
