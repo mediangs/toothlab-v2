@@ -64,8 +64,7 @@
       [step]="sectionStep"
       [value]="currentSection"
       (change)="updateSectionOutline(value.value)"
-    >
-    </md-slider>
+    ></md-slider>{{currentSection | number:'.1'}}mm
 
     <ul  *ngFor="let x3d of specimen.x3dModels">
 
