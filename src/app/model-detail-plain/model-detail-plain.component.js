@@ -39,15 +39,15 @@ var ModelDetailPlainComponent = (function () {
             /*
             var outline;
             var section: SectionSechema;
-      
+
             //section = this.sectionData.sections.filter(x => x.section === 1);
             var goal = 5;
             section = this.sectionData.sections
               .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
             //console.log(section);
-      
+
             outline = section.bdy_major_outline;
-      
+
             this.coordPoints.bdy_major_outline = [].concat.apply([], outline);
             this.coordIndex.bdy_major_outline = Object.keys(outline).map(x => Number(x)).concat(0);
             console.log(this.coordIndex.bdy_major_outline);
@@ -67,7 +67,7 @@ var ModelDetailPlainComponent = (function () {
             _this.renderer.setElementAttribute(document.getElementById(el.name + '__MA'), 'diffuseColor', el.color);
         });
     };
-    ModelDetailPlainComponent.prototype.changeTransperancy = function (element, transperancy) {
+    ModelDetailPlainComponent.prototype.setTransparency = function (element, transperancy) {
         element.prevTransperancy = element.transparency;
         element.transparency = transperancy;
         this.renderer.setElementAttribute(document.getElementById(element.name + '__MA'), 'transparency', element.transparency.toString());
@@ -82,7 +82,7 @@ var ModelDetailPlainComponent = (function () {
         }
         this.zoomed = !this.zoomed;
     };
-    ModelDetailPlainComponent.prototype.getIndexedLineSet = function (section) {
+    ModelDetailPlainComponent.prototype.setIndexedLineSet = function (section) {
         //console.log(this.currentSection);
         if (this.sectionData.sections[section]) {
             var outline = this.sectionData.sections[section].bdy_major_outline;

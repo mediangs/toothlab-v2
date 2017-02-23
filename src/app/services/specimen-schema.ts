@@ -13,6 +13,6 @@ export interface X3dModel{
   name : string;          // root           , canal-pre
   description? : string;   // Root Surface   , Root canal
   transparency? : number;
-  prevTransperancy? : number;
+  prevTransparency? : number;
   color? : string; // diffuseColor="1 1 0"
 }

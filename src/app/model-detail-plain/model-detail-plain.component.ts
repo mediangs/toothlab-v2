@@ -30,6 +30,12 @@ export class ModelDetailPlainComponent implements OnInit {
   coordIndex : ViewSectionSchema = {} ;
   coordPoints: ViewSectionSchema = {} ;
 
+  currentSection = 0;
+  sectionMax : number;
+  sectionMin : number;
+  sectionStep : number;
+
+
   constructor(private specimenService: SpecimenService,
               private route: ActivatedRoute,
               private router: Router,
@@ -55,10 +61,16 @@ export class ModelDetailPlainComponent implements OnInit {
     this.isLoading = false;
 
     this.specimenService.getSectionData(this.specimen)
-      .subscribe(data => this.sectionData = data);
+      .subscribe(data => {
+
+        this.sectionData = data;
+        this.sectionMax = Math.max.apply(Math, data.sections.map(o=>o.section));
+        this.sectionMin = Math.min.apply(Math, data.sections.map(o=>o.section));
+        this.sectionStep = (this.sectionMax - this.sectionMin) / (data.sections.length -1);
+
+      });
 
   }
-
 
   updateModelColor(x3d) {
     var el = document.getElementById(x3d.name + '__MA');
@@ -80,19 +92,26 @@ export class ModelDetailPlainComponent implements OnInit {
     });
   }
 
-  changeTransperancy(element: X3dModel, transperancy: number) {
-    element.prevTransperancy = element.transparency;
-    element.transparency = transperancy;
+  setTransparency(element: X3dModel, transparency: number) {
+    element.prevTransparency = element.transparency;
+    element.transparency = transparency;
     this.renderer.setElementAttribute(
       document.getElementById(element.name + '__MA'),
       'transparency', element.transparency.toString());
   }
 
+  toggleModel(x3d : X3dModel, checked : boolean){
+    this.setTransparency(x3d, checked ? x3d.prevTransparency : 1);
+  }
+
+  updateSectionOutline(sectionLevel){
+    this.currentSection = sectionLevel;
+    this.setIndexedLineSet(this.currentSection);
+  }
+
   toggleZoom() {
 
     var button = document.getElementById('zoom-button');
-
-
     if (this.zoomed) {
       button.style.backgroundColor = "#202021";
 
@@ -105,24 +124,19 @@ export class ModelDetailPlainComponent implements OnInit {
 
   }
 
-  currentSection = 0;
-  getIndexedLineSet(section) {
+
+  setIndexedLineSet(sectionLevel) {
     var keys = ['bdy_major_outline', 'cnl_pre_major_outline','cnl_pst_major_outline'];
 
-    /*
-    var goal = 5;
-    section = this.sectionData.sections
-      .reduce((prev, curr) => Math.abs(curr.section - goal) < Math.abs(prev.section - goal) ? curr : prev);
-    */
+    var section = this.sectionData.sections
+      .reduce((prev, curr) =>
+        Math.abs(curr.section - sectionLevel) < Math.abs(prev.section - sectionLevel) ? curr : prev);
 
-    if (this.sectionData.sections[section]){
-      keys.forEach(key => {
-        var outline = this.sectionData.sections[section][key];
-        this.coordPoints[key] = [].concat.apply([], outline);
-        this.coordIndex[key]  = Object.keys(outline).map(x=>Number(x)).concat(0);
-      });
-      this.currentSection ++;
-    }
+    keys.forEach(key => {
+      var outline = section[key];
+      this.coordPoints[key] = [].concat.apply([], outline);
+      this.coordIndex[key]  = Object.keys(outline).map(x=>Number(x)).concat(0);
+    });
   }
 
   gotoAnatomy() {
@@ -132,6 +146,4 @@ export class ModelDetailPlainComponent implements OnInit {
   reload() {
     this.restoreModelStatus()
   }
-
-
 }

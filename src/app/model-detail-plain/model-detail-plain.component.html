@@ -3,20 +3,22 @@
 
 <div id="main">
 
-  <div id="title" *ngIf="!zoomed">
-  <md-card>
+  <md-card id="title" *ngIf="!zoomed">
+    <md-card-header>
+      <md-card-title>{{specimen.id}}</md-card-title>
+    </md-card-header>
     <md-card-content>
-    <h4>{{specimen.id}}</h4>
     {{specimen.location}}<br>
     {{specimen.description}}<br>
     {{sectionData && sectionData.model.crv_name }}
+
     </md-card-content>
   </md-card>
-  </div>
 
 
 
   <!--x3d  id="specimen" height="100%" width = "100%" showProgress='false' showStat='false' showLog='false' -->
+
   <x3d id="model" height="70%" width="70%" [style.height.percent]="modelHeight"
        [style.width.percent]="modelWidth" showProgress='false' showStat='false' showLog='false'>
 
@@ -52,35 +54,33 @@
   </x3d>
 
 
+
   <div *ngIf="!zoomed">
+    <md-slider #value
+      class="example-margin"
+      [max]="sectionMax"
+      [thumb-label]="true"
+      [min]="sectionMin"
+      [step]="sectionStep"
+      [value]="currentSection"
+      (change)="updateSectionOutline(value.value)"
+    >
+    </md-slider>
+
     <ul  *ngFor="let x3d of specimen.x3dModels">
 
-      <md-checkbox class="items" color="primary" >
-        <md-icon class="md-24" [style.color]="x3d.color">label</md-icon>
+      <md-checkbox #value class="items" color="primary"
+                   [checked]="x3d.transparency < 1"
+                   (change) ="toggleModel(x3d, value.checked)" >
+        <md-icon class="md-24"  [style.color]="x3d.color">label</md-icon>
           {{x3d.description}}</md-checkbox>
-      <!-- div class="col-sm-1">
-        <div *ngIf="x3d.transparency===1">
-          <i (click)="changeTransperancy(x3d, x3d.prevTransperancy);" class="fa fa-eye-slash fa-lg"
-             aria-hidden="false"></i>
-        </div>
 
-        <div *ngIf="x3d.transparency < 1">
-          <i (click)="changeTransperancy(x3d, 1);"
-             class="fa fa-eye fa-lg"
-             [style.color]="x3d.color"
-             aria-hidden="false"></i>
-        </div>
-      </div>
-
-      <div class="col-sm-9">
-        {{x3d.description}}
-      </div-->
 
     </ul>
     <div>
       <button (click)="reload()">Reload</button>
       <button (click)="gotoAnatomy()">Back</button>
-      <button (click)="getIndexedLineSet(currentSection)">Gen. Outline</button>
+      <button (click)="setIndexedLineSet(currentSection)">Gen. Outline</button>
     </div>
   </div>
 </div>
